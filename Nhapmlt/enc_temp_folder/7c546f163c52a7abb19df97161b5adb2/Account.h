@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <iostream>
 #include <string>
 
@@ -8,7 +8,7 @@ struct Account {
     int id;
     string lnk, usr, pwd, desc;
 
-    
+    // Overload ?? in d? li?u (Dùng cho hàm Show)
     friend ostream& operator<<(ostream& os, const Account& b) {
         os << "----------------------------" << endl;
         os << "\t+ Id: " << b.id << endl;
@@ -19,11 +19,11 @@ struct Account {
         return os;
     }
 
-    
+    // Overload ?? nh?p d? li?u (Dùng cho hàm Add/Update)
     friend istream& operator>>(istream& in, Account& b) {
         cout << "\t+ Id: ";
         in >> b.id;
-        in.ignore(); // XÃ³a bá»™ nhá»› Ä‘á»‡m sau khi nháº­p sá»‘
+        in.ignore(); // Xóa b? nh? ??m sau khi nh?p s?
         cout << "\t+ Link: "; getline(in, b.lnk);
         cout << "\t+ User name: "; getline(in, b.usr);
         cout << "\t+ Password: "; getline(in, b.pwd);

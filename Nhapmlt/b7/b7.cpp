@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 #include "Account.h"
@@ -6,92 +5,75 @@
 
 using namespace std;
 
-int main()
-{
-	LinkedList<Account> accounts= { NULL };
-	do {
-		system("cls");
-		cout << "-------BOOK MANAGEMANT-------" << endl;
-		cout << "1. Show all books" << endl;
-		cout << "2. Add a book" << endl;
-		cout << "3. Delete a book" << endl;
-		cout << "4.Update a book" << endl;
-		cout << "5. Find book" << endl;
-		cout << "6. Export to file" << endl;
-		cout << "7. Import to file" << endl;
-		cout << "0. Exit" << endl;
-		cout << "-----------------------------" << endl;
-		cout << "Enter your choice" << endl;
-		int choice;
-		cin >> choice;
-		switch (choice)
-		{
-		case 1: {
-			accounts.Show();
-			break;
-		}
-		case 2: {
-			Account a;;
-			cin >> a;
-			accounts.Add(a);
-			break;
-		}
-		case 3: {
-			int removeid;
-			cout << "Enter account id to remove :" << endl;
-			cin >> removeid;
-			bool res = accounts.Remove(removeid);
-			if (res)
-				cout << "Removed account with id" << endl;
-			else
-				cout << "Not found account id" << endl;
-			break;
-		}
-		case 4: {
-			int updateid;
-			cout << "Enter account id to update: ";
-			cin >> updateid;
-			bool res = accounts.Update(updateid);
-			if (res)
-				cout << "Updated account with id: "  updateid << endl;
-			else
-				cout << "Not found account id: " << updateid << endl;
+int main() {
+    LinkedList<Account> accounts;
+    int choice;
 
-			break;
-		}
-		case 5: {
-			string username;
-			cout << "Enter account name : ";
-			cin.ignore();
-			getline(cin, username);
-			accounts.Find(username);
-			break;
-		}
-		case 6: {
-			accounts.Export("25TH1.dla");
-			cout << "Export successsfully" << endl;
-			break;
-		}
-		case 7: {
-			accounts.Import("25TH!.dla");
-			cout << "Import successfully" << endl;
-			break;
-		}
-		case 0: {
-			break;
-		}
-	
-	}
+    do {
+        system("cls");
+        cout << "======= ACCOUNT MANAGEMENT =======" << endl;
+        cout << "1. Show all accounts" << endl;
+        cout << "2. Add an account" << endl;
+        cout << "3. Delete an account" << endl;
+        cout << "4. Update an account" << endl;
+        cout << "5. Find account by username" << endl;
+        cout << "6. Export to file" << endl;
+        cout << "7. Import from file" << endl;
+        cout << "0. Exit" << endl;
+        cout << "----------------------------------" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-	
-defaut:
-	cout << "Invailid choice try again..." << endl;
-	system("pause");
-	cout << "Press Enter to countinue...";
-} while (true);
-return 0;
-	}
+        switch (choice) {
+        case 1:
+            accounts.Show();
+            break;
+        case 2: {
+            Account a;
+            cin >> a;
+            accounts.Add(a);
+            break;
+        }
+        case 3: {
+            int id;
+            cout << "Enter ID to remove: "; cin >> id;
+            if (accounts.Remove(id)) cout << "Success!" << endl;
+            else cout << "ID not found!" << endl;
+            break;
+        }
+        case 4: {
+            int id;
+            cout << "Enter ID to update: "; cin >> id;
+            if (accounts.Update(id)) cout << "Updated!" << endl;
+            else cout << "ID not found!" << endl;
+            break;
+        }
+        case 5: {
+            string user;
+            cout << "Enter username: ";
+            cin.ignore();
+            getline(cin, user);
+            accounts.Find(user);
+            break;
+        }
+        case 6:
+            accounts.Export("data.txt");
+            cout << "Exported to data.txt" << endl;
+            break;
+        case 7:
+            accounts.Import("data.txt");
+            cout << "Imported from data.txt" << endl;
+            break;
+        case 0:
+            cout << "Goodbye!" << endl;
+            break;
+        default:
+            cout << "Invalid choice!" << endl;
+        }
+        cout << "Press Enter to continue...";
+        cin.ignore();
+        cin.get();
+    } while (choice != 0);
 
-   
-
-
+    return 0;
+}

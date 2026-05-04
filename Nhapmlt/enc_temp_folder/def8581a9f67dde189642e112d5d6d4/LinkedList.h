@@ -106,7 +106,7 @@ void LinkedList<T>::Find(string username) {
     if (!found) cout << "No account found with username: " << username << endl;
 }
 
-
+// Hàm Export: Lưu dạng text để an toàn với std::string
 template <typename T>
 void LinkedList<T>::Export(string filename) {
     ofstream outFile(filename);
@@ -122,6 +122,8 @@ void LinkedList<T>::Export(string filename) {
     }
     outFile.close();
 }
+
+// Hàm Import: Đọc dữ liệu từ file vào danh sách
 template <typename T>
 void LinkedList<T>::Import(string filename) {
     ifstream inFile(filename);
